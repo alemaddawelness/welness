@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alessandro e Maddalena - Trasforma la Tua Vita</title>
+    <meta name="description" content="Scopri come Alessandro e Maddalena hanno trasformato la loro vita perdendo 23kg e costruendo libertà finanziaria. Inizia il tuo percorso gratuito oggi.">
+    <style>
+        :root {
+            --color-primary: #78BE20;
+            --color-primary-dark: #5a9618;
+            --color-dark: #1a1a1a;
+            --color-light: #f5f5f5;
+            --color-gray: #666;
+            --color-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-dark);
+            background-color: var(--color-white);
+        }
+
+        .compliance-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 1rem;
+        }
+
+        .compliance-modal.hidden {
+            display: none;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn:hover {
+            background: var(--color-primary-dark);
+            transform: scale(1.05);
+        }
+
+        header {
+            background: linear-gradient(135deg, #78BE20 0%, #9ed321 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            padding: 3rem 2rem 2rem 2rem;
+        }
+
+        .hero-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero-intro {
+            font-size: 1.2rem;
+            color: var(--color-dark);
+            margin: 2rem auto 1rem auto;
+            max-width: 600px;
+            padding: 0 1rem;
+        }
+
+        .hero-question {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            font-weight: 700;
+            margin: 0 auto 2rem auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .card-content.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .card-text h3 {
+            color: var(--color-primary);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+        }
+
+        .card-text p {
+            line-height: 1.8;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+        }
+
+        .card-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .skincare-section {
+            background: linear-gradient(135deg, #78BE20 0%, #9ed321 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .skincare-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .skincare-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h3 {
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.3rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--color-primary-dark);
+            transform: scale(1.02);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-view {
+            text-align: center;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.5s;
+        }
+
+        .success-view.hidden {
+            display: none;
+        }
+
+        .success-view h3 {
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .whatsapp-cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            transform: scale(1.05);
+        }
+
+        .social-links {
+            text-align: center;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+        }
+
+        .social-links h3 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 0.6rem;
+            padding: 1rem 1.8rem;
+            background: white;
+            color: var(--color-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .social-links a:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(120, 190, 32, 0.25);
+            border-color: var(--color-primary);
+        }
+
+        .social-links p {
+            margin-top: 1.5rem;
+            color: var(--color-gray);
+            font-size: 0.95rem;
+        }
+
+        .social-links .email-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .social-links .email-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Post-form layout improvements */
+        .post-form {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .post-form > .skincare-section,
+        .post-form > .whatsapp-cta,
+        .post-form > .social-links {
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .post-form .skincare-section {
+            background: linear-gradient(135deg, #78BE20 0%, #9ed321 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .post-form .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 999px;
+            font-weight: 800;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.16);
+            transition: all 0.3s;
+        }
+
+        .post-form .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 28px rgba(37,211,102,0.25);
+        }
+
+        .post-form .social-links {
+            background: transparent;
+            padding: 0;
+        }
+
+        .post-form .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .post-form {
+                grid-template-columns: 2fr 1fr;
+            }
+            .post-form .skincare-section {
+                margin-bottom: 1rem;
+            }
+            .post-form .whatsapp-cta {
+                margin-bottom: 1rem;
+            }
+        }
+
+        footer {
+            background: var(--color-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.4rem;
+            }
+
+            .hero-title {
+                font-size: 1.3rem;
+            }
+
+            .hero-overlay {
+                padding: 2rem 1rem 1rem 1rem;
+            }
+
+            .hero-intro {
+                font-size: 1.1rem;
+            }
+
+            .hero-question {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card-content,
+            .card-content.reverse {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card-content.reverse .card-image {
+                order: 1;
+            }
+
+            .card-content.reverse .card-text {
+                order: 2;
+            }
+
+            .card-text h3 {
+                font-size: 1.3rem;
+            }
+
+            .card-icon {
+                font-size: 1.8rem;
+            }
+
+            .skincare-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .skincare-section h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal Compliance Herbalife
+    <div id="complianceModal" class="compliance-modal hidden">
+        <div class="modal-content">
+            <h2>⚠️ Informativa Importante</h2>
+            <p><strong>I prodotti Herbalife non sono medicinali</strong> e non sono destinati a diagnosticare, trattare, curare o prevenire alcuna malattia.</p>
+            <p>Questa pagina è gestita da un <strong>Incaricato alle Vendite Indipendente Herbalife</strong>.</p>
+            <p>I risultati possono variare da persona a persona.</p>
+            <button class="modal-btn" onclick="closeModal()">Entra nel Sito</button>
+        </div>
+    </div> -->
+
+    <!-- Header -->
+    <header>
+        <h1>✨ Trasforma la Tua Vita ✨</h1>
+        <p>Con Alessandro e Maddalena - Consulenza Personalizzata Gratuita</p>
+        <div class="compliance-badge">
+            📋 Incaricati Indipendenti
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-image-container">
+                <img src="images/A_M2.jpeg" alt="Alessandro e Maddalena - Trasformazione" class="hero-image">
+                <div class="hero-overlay">
+                    <h2 class="hero-title">✨ Raggiungi la Tua Versione Migliore ✨</h2>
+                </div>
+            </div>
+
+            <p class="hero-intro"><strong>Siamo Alessandro e Maddalena</strong>, abbiamo perso 23 kg in due e scoperto come riscrivere il nostro futuro.</p>
+            <p class="hero-question"><strong>Vuoi sapere come?</strong></p>
+        </section>
+
+        <!-- Card: Chi Siamo -->
+        <div class="card">
+            <div class="card-content">
+                <img src="images/A_M1.jpeg" alt="Alessandro e Maddalena" class="card-image">
+                <div class="card-text">
+                    <h3><span class="card-icon">👫</span> Chi Siamo</h3>
+                    <p><strong>Siamo Alessandro e Maddalena.</strong> Solo pochi mesi fa, eravamo intrappolati nella solita routine, stanchi e poco soddisfatti della nostra forma fisica. Poi, tutto è cambiato.</p>
+                    <p><strong>Insieme abbiamo perso 23 kg</strong> (Ale -13kg e Madda -10kg), ma la vera scoperta non è stata solo quella che vedevamo allo specchio. Abbiamo sbloccato un metodo che non solo ci ha ridato energia, ma ci ha permesso di costruire una libertà finanziaria capace di regalarci la cosa più preziosa che esiste: <strong>il tempo</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: La Nostra Missione -->
+        <div class="card">
+            <div class="card-content reverse">
+                <div class="card-text">
+                    <h3><span class="card-icon">🎯</span> La Nostra Missione</h3>
+                    <p><strong>"La nostra missione è dimostrare che non devi più scegliere tra salute, carriera e vita privata.</strong> Siamo qui per ispirare chiunque si senta stanco della solita routine, aiutandoti a riconnetterti con la versione migliore di te stesso attraverso un benessere fisico consapevole."</p>
+                    <p><strong>Vogliamo fornirti gli strumenti</strong> per trasformare questo cambiamento in un'opportunità di libertà finanziaria, offrendoti la chiave per un'attività indipendente che metta al centro la qualità della tua vita.</p>
+                </div>
+                <img src="images/A2.jpeg" alt="Alessandro" class="card-image">
+            </div>
+        </div>
+
+        <!-- Card: La Differenza -->
+        <div class="card">
+            <div class="card-content">
+                <img src="images/M2.png" alt="Maddalena" class="card-image">
+                <div class="card-text">
+                    <h3><span class="card-icon">💎</span> Cosa Ci Rende Diversi</h3>
+                    <p><strong>Non vendiamo promesse, condividiamo un percorso collaudato.</strong></p>
+                    <p>Se cerchi un cambiamento fisico e una svolta professionale, sei nel posto giusto. Il nostro approccio è personalizzato, basato sui tuoi obiettivi reali, non su soluzioni generiche.</p>
+                    <p><strong>Ogni percorso inizia con una consulenza gratuita</strong> per capire dove sei ora e dove vuoi arrivare.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Contatti -->
+        <section class="form-section">
+            <h3>📝 Richiedi la Tua Consulenza Gratuita</h3>
+            <p style="text-align: center; margin-bottom: 2rem;">Compila il form e ti ricontatteremo per iniziare insieme il tuo percorso</p>
+            
+            <div id="formContainer">
+                <form id="contactForm">
+                    <input type="hidden" name="access_key" value="30cab5a6-463c-4db8-bc61-29091954ccc2">
+                    <input type="hidden" name="subject" value="Nuovo Lead Herbalife da Landing Page">
+                    <input type="hidden" name="from_name" value="Landing Page Herbalife">
+
+                    <div class="form-group">
+                        <label for="name">Nome e Cognome *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefono *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goal">Qual è il tuo obiettivo principale? *</label>
+                        <select id="goal" name="goal" required>
+                            <option value="">Seleziona...</option>
+                            <option value="Perdita di peso">Perdita di peso</option>
+                            <option value="Più energia">Più energia</option>
+                            <option value="Fitness e tonificazione">Fitness e tonificazione</option>
+                            <option value="Benessere generale">Benessere generale</option>
+                            <option value="Opportunità business">Opportunità business</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time_slot">Quando preferisci essere ricontattato? *</label>
+                        <select id="time_slot" name="time_slot" required>
+                            <option value="">Seleziona...</option>
+                            <option value="Mattina (9-12)">Mattina (9-12)</option>
+                            <option value="Pomeriggio (14-18)">Pomeriggio (14-18)</option>
+                            <option value="Sera (18-21)">Sera (18-21)</option>
+                            <option value="Qualsiasi orario">Qualsiasi orario</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Note aggiuntive (facoltativo)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Raccontaci qualcosa in più su di te..."></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">Accetto il trattamento dei miei dati personali per essere ricontattato *</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Invia Richiesta</button>
+                </form>
+            </div>
+
+            <div id="successView" class="success-view hidden">
+                <h3>✅ Richiesta Inviata con Successo!</h3>
+                <p>Grazie mille! Abbiamo ricevuto i tuoi dati correttamente.</p>
+                <p><strong>Ti ricontatteremo al più presto</strong> per iniziare insieme il tuo percorso.</p>
+            </div>
+        </section>
+
+        <!-- Post-Form Area (improved layout) -->
+        <div class="post-form">
+            <!-- Sezione Gancio: Skincare Experience -->
+            <section class="skincare-section">
+                <h3>✨ Regalati un Momento di Puro Benessere</h3>
+                <p><strong>La bellezza parte da dentro, ma si riflette fuori.</strong></p>
+                <p>Vuoi provare l'efficacia del nostro metodo sulla pelle? Prenota il tuo <strong>Trattamento Viso Rigenerante Omaggio</strong> direttamente con noi.</p>
+                <p>Un'esperienza esclusiva per scoprire come prenderti cura di te in modo naturale ed efficace.</p>
+                <a href="https://wa.me/393703319045?text=Ciao!%20Voglio%20prenotare%20il%20Trattamento%20Viso%20Rigenerante%20Omaggio%20" class="whatsapp-btn" target="_blank" style="background: white; color: #25D366;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.533.845-2.795 2.019-3.656 3.433-.85 1.414-1.293 2.998-1.293 4.656 0 1.659.443 3.243 1.293 4.657.861 1.414 2.123 2.589 3.656 3.434 1.534.844 3.155 1.378 5.032 1.378 1.876 0 3.498-.534 5.032-1.378 1.533-.845 2.795-2.02 3.656-3.434.85-1.414 1.293-2.998 1.293-4.657 0-1.658-.443-3.242-1.293-4.656-.861-1.414-2.123-2.589-3.656-3.434a9.87 9.87 0 00-5.031-1.378"/></svg>
+                    Prenota su WhatsApp
+                </a>
+            </section>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <h3>📱 Seguici sui Social</h3>
+                <a href="https://www.instagram.com/alessandrogodino90?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">📸 Alessandro</a>
+                <a href="https://www.instagram.com/maddapicci?igsh=bGswcXUwcDl4c3B5" target="_blank">📸 Maddalena</a>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:zjack@hotmail.it" class="email-link">zjack@hotmail.it</a>
+                </p>
+                <p>    
+                    <strong>Email:</strong> <a href="mailto:piccigallo89@gmail.com" class="email-link">piccigallo89@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Disclaimer:</strong> I prodotti Herbalife non sono medicinali e non sono destinati a diagnosticare, trattare, curare o prevenire alcuna malattia. I risultati possono variare da persona a persona in base al metabolismo individuale, allo stile di vita e all'esercizio fisico.</p>
+        <p>Questa pagina è gestita da Incaricati alle Vendite Indipendenti.</p>
+        <p>&copy; 2026 Alessandro e Maddalena Wellness Coach. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        // Modal Compliance (disabled - modal is commented out)
+        // window.addEventListener('DOMContentLoaded', function() {
+        //     document.getElementById('complianceModal').classList.remove('hidden');
+        // });
+
+        // function closeModal() {
+        //     document.getElementById('complianceModal').classList.add('hidden');
+        // }
+
+        // Form Submission
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formContainer = document.getElementById('formContainer');
+        const successView = document.getElementById('successView');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Invio in corso...';
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    formContainer.style.display = 'none';
+                    successView.classList.remove('hidden');
+                    successView.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error('Errore nell\'invio del form');
+                }
+            } catch (error) {
+                alert('Si è verificato un errore. Riprova o contattaci direttamente su WhatsApp.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Invia Richiesta';
+            }
+        });
+    </script>
+</body>
+</html>
